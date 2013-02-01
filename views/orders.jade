@@ -1,0 +1,7 @@
+extends layout
+
+block content
+	h1 List of All Orders
+	div
+	each order, i in orderlist
+		div(value=order) #{order.name} at #{order.cost}

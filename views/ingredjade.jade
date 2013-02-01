@@ -1,0 +1,10 @@
+extends layout
+
+block content
+	p Please Enter Your Ingredient
+	form(action="/ingredient/create", method="POST")
+		| Ingredient Name:  
+		input(type="text", name="ingredient")
+		| Cost:  
+		input(type="text", name="cost")
+		input(type="submit", value="Submit")
