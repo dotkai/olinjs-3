@@ -29,10 +29,11 @@ app.configure('development', function(){
 
 app.get('/', routes.index);
 app.get('/ingredient/new', ingredient.new);
-app.get('/order/new', ingredient.order);
+//app.get('/order/new', ingredient.neworder);
 app.get('/orders', ingredient.list);
 
 app.post("/ingredient/create", ingredient.create);
+app.post("/order/complete", ingredient.endorder);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));

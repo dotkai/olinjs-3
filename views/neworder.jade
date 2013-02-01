@@ -1,10 +1,9 @@
 extends layout
 
 block content
-	p Please Enter Your Ingredient
+	h1 Place Your Order Here
+	div
 	form(action="/ingredient/create", method="POST")
-		| Ingredient Name:  
-		input(type="text", name="name")
-		| Cost:  
-		input(type="text", name="cost")
-		input(type="submit", value="Submit")
+	each order, i in orderlist
+		input(type=checkbox)
+		div(value=order) #{order.name} at #{order.cost}
