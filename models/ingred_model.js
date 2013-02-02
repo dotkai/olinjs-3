@@ -1,21 +1,23 @@
-var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/burgers');
+var mongoose = require('mongoose')
+	, Schema = mongoose.Schema;
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function callback () {
-  // Somehow worked
+	// Somehow worked
 });
 
 var ingredSchema = mongoose.Schema({
 	name: String,
-	cost: Number
+	cost: String
 });
 
 var orderSchema = mongoose.Schema({
 	customerName: String,
+	_order: {type: Schema.Types.ObjectId, ref: 'Ingredient'},
 	ingredients: [{type: Schema.Types.ObjectId, ref: 'Ingredient'}]
 });
 
 var Ingredient = mongoose.model('Ingredient', ingredSchema);
-module.exports = Ingredient;
+var Order = mongoose.model('Order', orderSchema);
+module.exports = [Ingredient, Order];
