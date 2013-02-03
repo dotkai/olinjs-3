@@ -1,6 +1,6 @@
 $(function () {
 	$("#orderform").submit(function(){
-		$.post("/ingredient/submit", $("#orderform").serialize()).unbind();
+		$.post("/ingredient/submit", $("#orderform").serialize());
 		return false;
 	});
 

@@ -52,11 +52,10 @@ exports.list = function(req, res){
 		res.render('orders', {orderlist: docs, title: 'All Orders'});
 	});
 };
-
 //Back up function to delete test ingredients from database
 exports.endorder = function(req, res){
 	//Deletes ingredient
-	Order.find({}).sort('customerName').exec(function(err, docs){
+	Order.find().sort('customerName').exec(function (err, docs){
 		docs[0].remove();
 		res.redirect('/orders');
 	});
