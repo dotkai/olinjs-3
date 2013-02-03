@@ -14,7 +14,7 @@ var ingredSchema = mongoose.Schema({
 
 var orderSchema = mongoose.Schema({
 	customerName: String,
-	_ingredients: [{type: Schema.Types.ObjectId, ref: 'Ingredient'}]
+	_ingredients: Array
 });
 
 var Ingredient = mongoose.model('Ingredient', ingredSchema);

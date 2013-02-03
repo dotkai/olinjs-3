@@ -1,7 +1,10 @@
 extends layout
 
 block content
+	script(src='http://code.jquery.com/jquery.js')
+	script(src='/javascripts/formscript.js')
 	h1 List of All Orders
 	div
+	form(id="completeorder")
 	each order, i in orderlist
-		div(value=order) You have #{order.customerName} at #{order._ingredients}
+		div(value=order) #{order.customerName} has ordered: #{order._ingredients}

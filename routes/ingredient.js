@@ -32,15 +32,13 @@ exports.neworder = function(req, res){
 
 //Process the submission of the new order
 exports.submitorder = function(req, res){
-	//var test = $.post('/order/new', function(){
-	//	alert("Sucess");
-	//});
-	console.log(req.body);
-	var neworder = new Order({customerName: req.body.cname, _ingredients: req.body.ingredient});
+	var customer = req.body.cname
+		, ing = req.body.ingredient;
+	console.log(customer,ing);
+	var neworder = new Order({customerName: customer, _ingredients: ing});
 	neworder.save(function(err){
 	if (err)
 		return console.log("Error: We couldn't save the new Order");
-	res.redirect('/order/new');
 	});
 };
 
@@ -49,22 +47,17 @@ exports.list = function(req, res){
 
 	var orderlist = Order.find({}).sort('customerName').exec(function (err, docs) {
 		if (err)
-			return console.log("Error in list");
+			return console.log("Error in Order list");
 		
 		res.render('orders', {orderlist: docs, title: 'All Orders'});
 	});
 };
 
-
-
-
-
-
 //Back up function to delete test ingredients from database
-exports.del = function(req, res){
+exports.endorder = function(req, res){
 	//Deletes ingredient
-	Ingredient.find({}).sort('name').exec(function(err,docs){
-			docs[0].remove();
-			res.redirect('/order/new');
+	Order.find({}).sort('customerName').exec(function(err, docs){
+		docs[0].remove();
+		res.redirect('/orders');
 	});
 };

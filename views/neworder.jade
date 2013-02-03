@@ -1,9 +1,11 @@
 extends layout
 
 block content
+	script(src='http://code.jquery.com/jquery.js')
+	script(src='/javascripts/formscript.js')
 	h1 Place Your Order Here
 	div
-	form(action="/ingredient/submit", method="POST")
+	form(id="orderform")
 		| Name:	
 		input(type="text", name="cname")
 		p Select your ingredients:
