@@ -9,7 +9,7 @@ block content
 		p Select your ingredients:
 		each ing, i in inglist
 			div(value=ing) 
-				input(type="checkbox", name=#{ing.name})
+				input(type="checkbox", name="ingredient", value="#{ing.name}")
 				| #{ing.name} at $ #{ing.cost}
 		br
 		input(type="submit", name="Submit")

@@ -25,24 +25,29 @@ exports.create = function(req, res){
 exports.neworder = function(req, res){
 	var inglist = Ingredient.find({}).sort('name').exec(function (err, docs) {
 		if (err)
-			return console.log("Error in list");
+			return console.log("Error in new order list");
 		res.render('neworder', {inglist: docs, title: 'All Orders'});
 	});
 };
 
 //Process the submission of the new order
 exports.submitorder = function(req, res){
-	//console.log(req.body.cname);
-	//console.log(req.body.ing.name);
-	//res.redirect('/order/new');
-	var orderlist = new Order({name: req.body.cname, _order: req.body.ing._id});
+	//var test = $.post('/order/new', function(){
+	//	alert("Sucess");
+	//});
 	console.log(req.body);
+	var neworder = new Order({customerName: req.body.cname, _ingredients: req.body.ingredient});
+	neworder.save(function(err){
+	if (err)
+		return console.log("Error: We couldn't save the new Order");
+	res.redirect('/order/new');
+	});
 };
 
 //List of ORDERS (currently ingredients for nao)
 exports.list = function(req, res){
 
-	var orderlist = Order.find({}).sort('cname').exec(function (err, docs) {
+	var orderlist = Order.find({}).sort('customerName').exec(function (err, docs) {
 		if (err)
 			return console.log("Error in list");
 		
