@@ -7,13 +7,12 @@ var express = require('express')
   , ingredient = require('./routes/ingredient')
   , http = require('http')
   , path = require('path')
-  , mongoose = require('mongoose')
-  , jquery = require('jquery');
+  , mongoose = require('mongoose');
 
 var app = express();
 
 app.configure(function(){
-  app.set('port', process.env.PORT || 3000);
+  app.set('port', process.env.PORT || 4000);
   app.set('views', __dirname + '/views');
   app.set('view engine', 'jade');
   app.use(express.favicon());

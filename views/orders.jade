@@ -7,4 +7,6 @@ block content
 	div
 	form(id="completeorder")
 	each order, i in orderlist
-		div(value=order) #{order.customerName} has ordered: #{order._ingredients}
+		div(value=order, class="#{order._id}") 
+			| #{order.customerName} has ordered: #{order._ingredients}     
+			input(type="button", name="#{order.customerName}", value="Completed", class="com_button", id="#{order._id}")

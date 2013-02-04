@@ -4,7 +4,6 @@
 var Mods = require('../models/ingred_model');
 var Ingredient = Mods[0];
 var Order = Mods[1];
-var jquery = require('jquery');
 
 //FORM new Ingredient
 exports.new = function(req, res){
@@ -42,7 +41,7 @@ exports.submitorder = function(req, res){
 	});
 };
 
-//List of ORDERS (currently ingredients for nao)
+//List of ORDERS
 exports.list = function(req, res){
 
 	var orderlist = Order.find({}).sort('customerName').exec(function (err, docs) {
@@ -52,11 +51,13 @@ exports.list = function(req, res){
 		res.render('orders', {orderlist: docs, title: 'All Orders'});
 	});
 };
-//Back up function to delete test ingredients from database
+
+//Removes an order
 exports.endorder = function(req, res){
-	//Deletes ingredient
-	Order.find().sort('customerName').exec(function (err, docs){
+	//console.log(req.body.id);
+	Order.find({_id: req.body.id}).exec(function (err, docs){
 		docs[0].remove();
-		res.redirect('/orders');
+		if (err)
+			return console.log("Unable to complete Order");
 	});
-};
+}
